@@ -1,4 +1,4 @@
-package main
+package primeutils
 
 import (
 	"fmt"
