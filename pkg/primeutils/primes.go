@@ -20,18 +20,19 @@ func CheckIfPrime(num int64, c chan *Num) {
 	if num == 2 || num == 3 {
 		n.IsPrime = true
 		c <- n
-	} else if num%2 == 0 {
-		c <- n
-	} else {
-		limit := math.Sqrt(float64(num))
-		for i := int64(3); i <= int64(limit); i += 2 {
-			if num%i == 0 {
-				c <- n
-				return
-			}
-		}
-		n.IsPrime = true
-		c <- n
+		return
 	}
-
+	if num%2 == 0 {
+		c <- n
+		return
+	}
+	limit := math.Sqrt(float64(num))
+	for i := int64(3); i <= int64(limit); i += 2 {
+		if num%i == 0 {
+			c <- n
+			return
+		}
+	}
+	n.IsPrime = true
+	c <- n
 }
